@@ -29,7 +29,9 @@ class _MainState extends State<Main> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(children: <Widget>[
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
           Text('현재 위치 미세먼지'),
           Card(
             child: Column(
