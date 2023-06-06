@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget{
         primarySwatch: Colors.blue,
 
       ),
-      home: ,
+      home: Main(),
     );
   }
 }
@@ -27,6 +27,39 @@ class Main extends StatefulWidget {
 class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Center(
+        child: Column(children: <Widget>[
+          Text('현재 위치 미세먼지'),
+          Card(
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget> [
+                    Text('지역'),
+                    Text('80'),
+                    Text('보통'),
+                  ],
+                ),
+              Row(
+                  children: <Widget> [
+                    Text('지역'),
+                    Text('80'),
+                    Text('보통'),
+            ],
+          )
+            ],),
+          ),
+          ElevatedButton(
+            color: Colors.orange,
+            onPressed: () {   },
+            child: Icon(
+              Icons.refresh,
+              color: Colors.white,
+            ),
+          )
+        ],),
+      ),
+    );
   }
 }
