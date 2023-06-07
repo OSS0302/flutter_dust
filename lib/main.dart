@@ -30,9 +30,12 @@ class _MainState extends State<Main> {
     return Scaffold(
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-          Text('현재 위치 미세먼지'),
+          Text(
+              '현재 위치 미세먼지',
+            style: TextStyle(fontSize: 30),
+          ),
           Card(
             child: Column(
               children: <Widget>[
