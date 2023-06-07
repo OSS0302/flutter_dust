@@ -55,14 +55,17 @@ class _MainState extends State<Main> {
           )
             ],),
           ),
-          ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.orange)
-            ),
-            onPressed: () {},
-            child: Icon(
-              Icons.refresh,
-              color: Colors.white,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(30),
+            child: ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.orange)
+              ),
+              onPressed: () {},
+              child: Icon(
+                Icons.refresh,
+                color: Colors.white,
+              ),
             ),
           )
         ],),
