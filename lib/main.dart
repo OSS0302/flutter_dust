@@ -43,8 +43,8 @@ class _MainState extends State<Main> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget> [
                     Text('지역'),
-                    Text('80'),
-                    Text('보통'),
+                    Text('80',style: TextStyle(fontSize: 40),),
+                    Text('보통',style: TextStyle(fontSize: 20),),
                   ],
                 ),
               Row(
