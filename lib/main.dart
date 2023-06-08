@@ -50,7 +50,15 @@ class _MainState extends State<Main> {
               Row(
                 mainAxisAlignment:  MainAxisAlignment.spaceAround,
                   children: <Widget> [
-                    Text('지역'),
+                    Row(
+                      children: [
+                        Text('이미지'),
+                        SizedBox(
+                          width: 16,
+                        )//여백주기 16
+                        Text('11°',style:  TextStyle(fontSize: 16),),
+                      ],
+                    ),
                     Text('80'),
                     Text('보통'),
             ],
