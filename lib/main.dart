@@ -57,14 +57,17 @@ class _MainState extends State<Main> {
           ),
           ClipRRect(
             borderRadius: BorderRadius.circular(30),
-            child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.orange)
-              ),
-              onPressed: () {},
-              child: Icon(
-                Icons.refresh,
-                color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 50.0),
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.orange)
+                ),
+                onPressed: () {},
+                child: Icon(
+                  Icons.refresh,
+                  color: Colors.white,
+                ),
               ),
             ),
           )
