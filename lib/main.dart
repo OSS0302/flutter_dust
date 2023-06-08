@@ -39,13 +39,16 @@ class _MainState extends State<Main> {
           Card(
             child: Column(
               children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget> [
-                    Text('지역'),
-                    Text('80',style: TextStyle(fontSize: 40),),
-                    Text('보통',style: TextStyle(fontSize: 20),),
-                  ],
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget> [
+                      Text('지역'),
+                      Text('80',style: TextStyle(fontSize: 40),),
+                      Text('보통',style: TextStyle(fontSize: 20),),
+                    ],
+                  ),
+                  color: Colors.yellow,
                 ),
               Row(
                 mainAxisAlignment:  MainAxisAlignment.spaceAround,
