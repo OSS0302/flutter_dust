@@ -40,6 +40,7 @@ class _MainState extends State<Main> {
             child: Column(
               children: <Widget>[
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget> [
                     Text('지역'),
                     Text('80'),
@@ -47,6 +48,7 @@ class _MainState extends State<Main> {
                   ],
                 ),
               Row(
+                mainAxisAlignment:  MainAxisAlignment.spaceAround,
                   children: <Widget> [
                     Text('지역'),
                     Text('80'),
