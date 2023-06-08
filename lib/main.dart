@@ -59,8 +59,8 @@ class _MainState extends State<Main> {
                         Text('11°',style:  TextStyle(fontSize: 16),),
                       ],
                     ),
-                    Text('80'),
-                    Text('보통'),
+                    Text('습도 100%'),
+                    Text('풍속 5.7m/s'),
             ],
           )
             ],),
