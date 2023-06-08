@@ -44,7 +44,7 @@ class _MainState extends State<Main> {
             Card(
               child: Column(
                 children: <Widget>[
-                  Container(
+                   Container(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget> [
@@ -54,23 +54,27 @@ class _MainState extends State<Main> {
                       ],
                     ),
                     color: Colors.yellow,
+                     padding: const EdgeInsets.all(8.0),
                   ),
-                Row(
-                  mainAxisAlignment:  MainAxisAlignment.spaceAround,
-                    children: <Widget> [
-                      Row(
-                        children: [
-                          Text('이미지'),
-                          SizedBox(
-                            width: 16,
-                          ),//여백주기 16
-                          Text('11°',style:  TextStyle(fontSize: 16),),
-                        ],
-                      ),
-                      Text('습도 100%'),
-                      Text('풍속 5.7m/s'),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment:  MainAxisAlignment.spaceAround,
+                      children: <Widget> [
+                        Row(
+                          children: [
+                            Text('이미지'),
+                            SizedBox(
+                              width: 16,
+                            ),//여백주기 16
+                            Text('11°',style:  TextStyle(fontSize: 16),),
+                          ],
+                        ),
+                        Text('습도 100%'),
+                        Text('풍속 5.7m/s'),
               ],
-            )
+            ),
+                )
               ],),
             ),
             ClipRRect(
