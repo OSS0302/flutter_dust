@@ -14,6 +14,10 @@ import 'package:flutter_dust/main.dart';
 
 void main() {
   test('http 통신 테스트',() async {
-   var response = await http.get('https://api.airvisual.com/v2/nearest_city?key=8a092729-a723-4c7e-befa-50e6921a48fb' as Uri);
-   });
+   var response = await http.get('https://api.airvisual.com/v2/nearest_city?key=8a092729-a723-4c7e-befa-50e6921a48fb');
+
+   // 결과확인하기
+    expect(response.statusCode, 200);
+
+  });
 }
