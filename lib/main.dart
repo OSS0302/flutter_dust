@@ -76,8 +76,8 @@ class _MainState extends State<Main> {
                               style:  TextStyle(fontSize: 16),),
                           ],
                         ),
-                        Text('습도 ${_result.data?.current?.weather?.hu}'),
-                        Text('풍속 5.7m/s'),
+                        Text('습도 ${_result.data?.current?.weather?.hu}%'),
+                        Text('풍속 ${_result.data?.current?.weather?.ws}m/s'),
               ],
             ),
                 )
