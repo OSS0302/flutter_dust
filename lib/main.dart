@@ -72,7 +72,8 @@ class _MainState extends State<Main> {
                             SizedBox(
                               width: 16,
                             ),//여백주기 16
-                            Text('11°',style:  TextStyle(fontSize: 16),),
+                            Text('${_result.data?.current?.weather?.tp}',
+                              style:  TextStyle(fontSize: 16),),
                           ],
                         ),
                         Text('습도 100%'),
