@@ -97,7 +97,7 @@ class _MainState extends State<Main> {
                             SizedBox(
                               width: 16,
                             ),//여백주기 16
-                            Text('${_result.data?.current?.weather?.tp}',
+                            Text('${_result.data?.current?.weather?.tp}°',
                               style:  TextStyle(fontSize: 16),),
                           ],
                         ),
