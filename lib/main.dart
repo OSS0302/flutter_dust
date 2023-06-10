@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dust/models/AirResult.dart';
+import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 void main() => runApp(MyApp());
 
@@ -28,6 +31,17 @@ class Main extends StatefulWidget {
 class _MainState extends State<Main> {
   // air 결과 값 가져오기
    late AirResult _result;
+   // 비동기로 데이터를 얻어서 가져온다.
+   Future<AirResult> fechData()async{
+     var toUri = Uri.parse(
+         'http://api.airvisual.com/v2/nearest_city?key=8a092729-a723-4c7e-befa-50e6921a48fb');
+     var response = await http.get(toUri);
+
+     // 공기 결과
+     AirResult result = AirResult.fromJson(json.decode(response.body));
+
+    return
+   }
 
   @override
   Widget build(BuildContext context) {
