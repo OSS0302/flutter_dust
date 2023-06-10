@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dust/models/AirResult.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,6 +26,9 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
+  // air 결과 값 가져오기
+   late AirResult _result;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
