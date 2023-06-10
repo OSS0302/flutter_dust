@@ -53,7 +53,8 @@ class _MainState extends State<Main> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget> [
                         Text('지역'),
-                        Text('80',style: TextStyle(fontSize: 40),),
+                        Text('${_result.data?.current?.pollution?.aqius}',
+                          style: TextStyle(fontSize: 40),),
                         Text('보통',style: TextStyle(fontSize: 20),),
                       ],
                     ),
