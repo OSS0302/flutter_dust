@@ -40,8 +40,19 @@ class _MainState extends State<Main> {
      // 공기 결과
      AirResult result = AirResult.fromJson(json.decode(response.body));
 
-    return
+    return result;
    }
+   @override
+  void initState() {
+    super.initState();
+
+    fechData().then((airResult){
+      setState(() {
+        _result = airResult;
+      });
+
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
