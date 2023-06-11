@@ -30,9 +30,9 @@ class Main extends StatefulWidget {
 
 class _MainState extends State<Main> {
   // air 결과 값 가져오기
-   late AirResult _result;
+    AirResult? _result;
    // 비동기로 데이터를 얻어서 가져온다.
-   Future<AirResult> fechData()async{
+   Future<AirResult> fetchData()async{
      var toUri = Uri.parse(
          'http://api.airvisual.com/v2/nearest_city?key=8a092729-a723-4c7e-befa-50e6921a48fb');
      var response = await http.get(toUri);
@@ -42,15 +42,15 @@ class _MainState extends State<Main> {
 
     return result;
    }
+
    @override
   void initState() {
     super.initState();
 
-    fechData().then((airResult){
+    fetchData().then((airResult){
       setState(() {
-        _result = airResult;
+      _result =airResult;
       });
-
     });
   }
 
@@ -78,7 +78,7 @@ class _MainState extends State<Main> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget> [
                         Text('지역'),
-                        Text('${_result.data?.current?.pollution?.aqius}',
+                        Text('${_result?.data?.current?.pollution?.aqius}',
                           style: TextStyle(fontSize: 40),),
                         Text('보통',style: TextStyle(fontSize: 20),),
                       ],
@@ -97,12 +97,12 @@ class _MainState extends State<Main> {
                             SizedBox(
                               width: 16,
                             ),//여백주기 16
-                            Text('${_result.data?.current?.weather?.tp}°',
+                            Text('${_result?.data?.current?.weather?.tp}°',
                               style:  TextStyle(fontSize: 16),),
                           ],
                         ),
-                        Text('습도 ${_result.data?.current?.weather?.hu}%'),
-                        Text('풍속 ${_result.data?.current?.weather?.ws}m/s'),
+                        Text('습도 ${_result?.data?.current?.weather?.hu}%'),
+                        Text('풍속 ${_result?.data?.current?.weather?.ws}m/s'),
               ],
             ),
                 )
