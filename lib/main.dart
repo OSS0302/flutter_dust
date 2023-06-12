@@ -92,7 +92,7 @@ class _MainState extends State<Main> {
                                   ),
                                 ],
                               ),
-                              color: getColor(AirResult()),
+                              color: Colors.orange,
                               padding: const EdgeInsets.all(8.0),
                             ),
                             Padding(
@@ -102,8 +102,12 @@ class _MainState extends State<Main> {
                                     MainAxisAlignment.spaceAround,
                                 children: <Widget>[
                                   Row(
-                                    children: [
-                                      Text('이미지'),
+                                    children: <Widget>[
+                                      Image.network(
+                                        'https://airvisual.com/images/${_result?.data?.current?.weather?.ic}.png',
+                                        width: 32, // 넓이
+                                        height: 32, // 높이
+                                      ),
                                       SizedBox(
                                         width: 16,
                                       ), //여백주기 16
@@ -151,15 +155,4 @@ class _MainState extends State<Main> {
     );
   }
 
-  Color getColor(AirResult result) {
-    if (result?.data?.current?.pollution?.aqius <= 50 ) {
-      return Colors.greenAccent;
-    } else if (result?.data?.current?.pollution?.aqius <= 100) {
-      return Colors.yellow;
-    } else if (result?.data?.current?.pollution?.aqius <= 150) {
-      return Colors.orange;
-    } else {
-      return Colors.red;
-    }
-  }
 }
