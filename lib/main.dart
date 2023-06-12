@@ -178,7 +178,7 @@ class _MainState extends State<Main> {
         result.data!.current!.pollution!.aqius! <= 100) {
       return '보통';
     } else if (result.data?.current?.pollution?.aqius != null &&
-        result.data!.current!.pollution!.aqius! <= 50) {
+        result.data!.current!.pollution!.aqius! <= 150) {
       return '나쁨';
     } else {
       return '최악';
