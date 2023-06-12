@@ -92,7 +92,7 @@ class _MainState extends State<Main> {
                                   ),
                                 ],
                               ),
-                              color: Colors.orange,
+                              color: getColor(_result!),
                               padding: const EdgeInsets.all(8.0),
                             ),
                             Padding(
@@ -155,4 +155,18 @@ class _MainState extends State<Main> {
     );
   }
 
+  Color getColor(AirResult result) {
+    if (result.data?.current?.pollution?.aqius != null &&
+        result.data!.current!.pollution!.aqius! <= 50) {
+      return Colors.greenAccent;
+    } else if (result.data?.current?.pollution?.aqius != null &&
+        result.data!.current!.pollution!.aqius! <= 100) {
+      return Colors.yellow;
+    } else if (result.data?.current?.pollution?.aqius != null &&
+        result.data!.current!.pollution!.aqius! <= 50) {
+      return Colors.orange;
+    } else {
+      return Colors.red;
+    }
+  }
 }
