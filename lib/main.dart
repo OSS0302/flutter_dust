@@ -87,7 +87,7 @@ class _MainState extends State<Main> {
                                     style: TextStyle(fontSize: 40),
                                   ),
                                   Text(
-                                    '보통',
+                                    getString(_result!),
                                     style: TextStyle(fontSize: 20),
                                   ),
                                 ],
@@ -167,6 +167,21 @@ class _MainState extends State<Main> {
       return Colors.orange;
     } else {
       return Colors.red;
+    }
+  }
+
+  String getString(AirResult result) {
+    if (result.data?.current?.pollution?.aqius != null &&
+        result.data!.current!.pollution!.aqius! <= 50) {
+      return '좋음';
+    } else if (result.data?.current?.pollution?.aqius != null &&
+        result.data!.current!.pollution!.aqius! <= 100) {
+      return '보통';
+    } else if (result.data?.current?.pollution?.aqius != null &&
+        result.data!.current!.pollution!.aqius! <= 50) {
+      return '나쁨';
+    } else {
+      return '최악';
     }
   }
 }
