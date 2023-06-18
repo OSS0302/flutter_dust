@@ -1,6 +1,7 @@
 import 'package:flutter_dust/models/AirResult.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:rxdart/rxdart.dart';
 class AirBloc{
   // 비동기로 데이터를 얻어서 가져온다.
   Future<dynamic> fetchData() async {
@@ -19,4 +20,7 @@ class AirBloc{
     }
   }
 
+  AirBloc(){
+    fetchData();
+  }
 }
