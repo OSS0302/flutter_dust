@@ -4,7 +4,8 @@ import 'dart:convert';
 import 'package:rxdart/rxdart.dart';
 class AirBloc{
 
-  final _airSubject = BehaviorSubject<Air_Result>(); // BehaviorSubject: Air_Result값을 제일 마지막을 밀어내는 기능
+  final _airSubject = BehaviorSubject<Air_Result>(); // BehaviorSubject: //Air_Result값을 제일 마지막을 밀어내는 기능
+
   // 비동기로 데이터를 얻어서 가져온다.
   Future<dynamic> fetchData() async {
     var toUri = Uri.parse(
