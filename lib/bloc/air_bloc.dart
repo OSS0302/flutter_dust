@@ -28,6 +28,8 @@ class AirBloc{
   }
   void fetch() async {
     var airResult = await fetchData(); //비동기 데이터를 사용하기 위해서
-    _airSubject.add(airResult);
+    _airSubject.add(airResult); //마지막 데이터가 비동기로들어간다.
   }
+  Stream<Air_Result> get airResult => _airSubject.stream; // 에어 서브젝트 있는 스트림을 꺼내오며 마지막 값인 airResult 얻는다.. .
+
 }
