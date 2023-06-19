@@ -31,5 +31,8 @@ class AirBloc{
     _airSubject.add(airResult); //마지막 데이터가 비동기로들어간다.
   }
   Stream<Air_Result> get airResult => _airSubject.stream; // 에어 서브젝트 있는 스트림을 꺼내오며 마지막 값인 airResult 얻는다.. .
-
+ // 블럭에 기능 추가하기
+void refresh(){
+  fetch(); // 페치를 실행해야한다.
+}
 }
