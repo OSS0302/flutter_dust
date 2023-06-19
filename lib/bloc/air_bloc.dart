@@ -1,4 +1,4 @@
-import 'package:flutter_dust/models/AirResult.dart';
+import 'package:flutter_dust/models/air_result.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:rxdart/rxdart.dart';
