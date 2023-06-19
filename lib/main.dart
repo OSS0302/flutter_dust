@@ -74,7 +74,7 @@ class _MainState extends State<Main> {
     );
   }
 
-  Padding buildbody() {
+  Widget buildbody() {
     return Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
