@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dust/models/AirResult.dart';
+import 'package:flutter_dust/models/air_result.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -29,12 +29,27 @@ class Main extends StatefulWidget {
 
 class _MainState extends State<Main> {
   // air 결과 값 가져오기
-  AirResult? _result;
+  Air_Result? _result;
 
 
   @override
   void initState() {
     super.initState();
+    Future<dynamic> fetchData() async {
+      var toUri = Uri.parse(
+          'http://api.airvisual.com/v2/nearest_city?key=8a092729-a723-4c7e-befa-50e6921a48fb');
+      var response = await http.get(toUri);
+
+      // 공기 결과
+      Air_Result result = Air_Result.fromJson(json.decode(response.body));
+
+      if (result.data != null) {
+        print(result.data!.current.toString());
+        return result;
+      } else {
+        return null;
+      }
+    }
 
     fetchData().then((airResult) {
       if(airResult != null){
@@ -157,7 +172,7 @@ class _MainState extends State<Main> {
     );
   }
 
-  Color getColor(AirResult result) {
+  Color getColor(Air_Result result) {
     if (result.data?.current?.pollution?.aqius != null &&
         result.data!.current!.pollution!.aqius! <= 50) {
       return Colors.greenAccent;
@@ -172,7 +187,7 @@ class _MainState extends State<Main> {
     }
   }
 
-  String getString(AirResult result) {
+  String getString(Air_Result result) {
     if (result.data?.current?.pollution?.aqius != null &&
         result.data!.current!.pollution!.aqius! <= 50) {
       return '좋음';
@@ -186,4 +201,6 @@ class _MainState extends State<Main> {
       return '최악';
     }
   }
+
+  fetchData() {}
 }
