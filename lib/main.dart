@@ -34,44 +34,15 @@ class _MainState extends State<Main> {
   // air 결과 값 가져오기
   Air_Result? _result;
 
-
-  @override
-  void initState() {
-    super.initState();
-    Future<dynamic> fetchData() async {
-      var toUri = Uri.parse(
-          'http://api.airvisual.com/v2/nearest_city?key=8a092729-a723-4c7e-befa-50e6921a48fb');
-      var response = await http.get(toUri);
-
-      // 공기 결과
-      Air_Result result = Air_Result.fromJson(json.decode(response.body));
-
-      if (result.data != null) {
-        print(result.data!.current.toString());
-        return result;
-      } else {
-        return null;
-      }
-    }
-
-    fetchData().then((airResult) {
-      if(airResult != null){
-        setState(() {
-          _result = airResult;
-        });
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: StreamBuilder<Object>(
-          stream: null,
+        child: StreamBuilder<Air_Result>(
+          stream: airBloc.airResult, //에어블럭에서 데이터가져오기
           builder: (context, snapshot) {
             if(snapshot.hasData){
-              return buildbody();
+              return buildbody(snapshot.data );
             }else{
              return CircularProgressIndicator();
             }
@@ -81,7 +52,7 @@ class _MainState extends State<Main> {
     );
   }
 
-  Widget buildbody() {
+  Widget buildbody(Air_Result result) {
     return Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
@@ -103,18 +74,18 @@ class _MainState extends State<Main> {
                               mainAxisAlignment:
                                   MainAxisAlignment.spaceAround,
                               children: <Widget>[
-                                Text('지역:${_result?.data?.city}'),
+                                Text('지역:${result?.data?.city}'),
                                 Text(
-                                  '${_result?.data?.current?.pollution?.aqius}',
+                                  '${result?.data?.current?.pollution?.aqius}',
                                   style: TextStyle(fontSize: 40),
                                 ),
                                 Text(
-                                  getString(_result!),
+                                  getString(result!),
                                   style: TextStyle(fontSize: 20),
                                 ),
                               ],
                             ),
-                            color: getColor(_result!),
+                            color: getColor(result!),
                             padding: const EdgeInsets.all(8.0),
                           ),
                           Padding(
@@ -125,8 +96,8 @@ class _MainState extends State<Main> {
                               children: <Widget>[
                                 Row(
                                   children: <Widget>[
-                                    _result?.data?.current?.weather?.ic != null ? Image.network(
-                                      'https://airvisual.com/images/${_result?.data?.current?.weather?.ic}.png',
+                                    result?.data?.current?.weather?.ic != null ? Image.network(
+                                      'https://airvisual.com/images/${result?.data?.current?.weather?.ic}.png',
                                       width: 32, // 넓이
                                       height: 32, // 높이
                                     ) : Container(),
@@ -134,15 +105,15 @@ class _MainState extends State<Main> {
                                       width: 16,
                                     ), //여백주기 16
                                     Text(
-                                      '${_result?.data?.current?.weather?.tp ?? ''}°',
+                                      '${result?.data?.current?.weather?.tp ?? ''}°',
                                       style: TextStyle(fontSize: 16),
                                     ),
                                   ],
                                 ),
                                 Text(
-                                    '습도 ${_result?.data?.current?.weather?.hu}%'),
+                                    '습도 ${result?.data?.current?.weather?.hu}%'),
                                 Text(
-                                    '풍속 ${_result?.data?.current?.weather?.ws}m/s'),
+                                    '풍속 ${result?.data?.current?.weather?.ws}m/s'),
                               ],
                             ),
                           )
@@ -163,11 +134,11 @@ class _MainState extends State<Main> {
                                           BorderRadius.circular(30.0)))),
                           onPressed: () {
                             setState(() {
-                              _result = null;
+                              result = null;
                               fetchData().then((airResult) {
                                 if(airResult != null){
                                   setState(() {
-                                    _result = airResult;
+                                    result = airResult;
                                   });
                                 }
                               });
