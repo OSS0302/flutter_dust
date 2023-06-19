@@ -23,7 +23,9 @@ class AirBloc{
     }
   }
 
-  AirBloc(){
-    fetchData(); //페치 데이터
+  AirBloc() {
+  }
+  void fetch() async {
+    var airResult = await fetchData(); //비동기 데이터를 사용하기 위해서
   }
 }
