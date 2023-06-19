@@ -67,9 +67,16 @@ class _MainState extends State<Main> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: _result == null
-            ? CircularProgressIndicator()
-            :  buildbody(),
+        child: StreamBuilder<Object>(
+          stream: null,
+          builder: (context, snapshot) {
+            if(snapshot.hasData){
+              return buildbody();
+            }else{
+             return CircularProgressIndicator();
+            }
+          }
+        ),
       ),
     );
   }
