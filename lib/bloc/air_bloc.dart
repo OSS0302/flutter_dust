@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:rxdart/rxdart.dart';
 class AirBloc{
+
+  final _airSubject = BehaviorSubject<Air_Result>(); // BehaviorSubject: Air_Result값을 제일 마지막을 밀어내는 기능
   // 비동기로 데이터를 얻어서 가져온다.
   Future<dynamic> fetchData() async {
     var toUri = Uri.parse(
@@ -10,7 +12,7 @@ class AirBloc{
     var response = await http.get(toUri);
 
     // 공기 결과
-    AirResult result = AirResult.fromJson(json.decode(response.body));
+    Air_Result result = Air_Result.fromJson(json.decode(response.body));
 
     if(result.data != null){
       print(result.data!.current.toString());
@@ -21,6 +23,6 @@ class AirBloc{
   }
 
   AirBloc(){
-    fetchData();
+    fetchData(); //페치 데이터
   }
 }
