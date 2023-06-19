@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dust/bloc/air_bloc.dart';
 import 'package:flutter_dust/models/air_result.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 void main() => runApp(MyApp());
+
+final airBloc = AirBloc(); // 인헤리티드위젯이든 flutter Bloc등등 이있다 .
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
