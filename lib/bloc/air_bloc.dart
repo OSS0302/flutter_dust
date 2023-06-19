@@ -24,8 +24,10 @@ class AirBloc{
   }
 
   AirBloc() {
+    fetch(); // 생성자를 사용해서 사용하기
   }
   void fetch() async {
     var airResult = await fetchData(); //비동기 데이터를 사용하기 위해서
+    _airSubject.add(airResult);
   }
 }
