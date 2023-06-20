@@ -1,10 +1,10 @@
-class Air_Result {
+class AirResult {
   String? status;
   Data? data;
 
-  Air_Result({this.status, this.data});
+  AirResult({this.status, this.data});
 
-  Air_Result.fromJson(Map<String, dynamic> json) {
+  AirResult.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }

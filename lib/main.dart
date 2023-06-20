@@ -31,18 +31,18 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
-  // air 결과 값 가져오기
-  Air_Result? _result;
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: StreamBuilder<Air_Result>(
-          stream: airBloc.airResult, //에어블럭에서 데이터가져오기
+        child: StreamBuilder<AirResult>(
+          stream: airBloc.airResult,  //에어블럭에서 데이터가져오기
           builder: (context, snapshot) {
             if(snapshot.hasData){
-              return buildbody(snapshot.data );
+              return buildBody(snapshot.requireData);
             }else{
              return CircularProgressIndicator();
             }
@@ -52,7 +52,7 @@ class _MainState extends State<Main> {
     );
   }
 
-  Widget buildbody(Air_Result result) {
+  Widget buildBody(AirResult result) {
     return Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
@@ -74,18 +74,18 @@ class _MainState extends State<Main> {
                               mainAxisAlignment:
                                   MainAxisAlignment.spaceAround,
                               children: <Widget>[
-                                Text('지역:${result?.data?.city}'),
+                                Text('지역:${result.data?.city}'),
                                 Text(
-                                  '${result?.data?.current?.pollution?.aqius}',
+                                  '${result.data?.current?.pollution?.aqius}',
                                   style: TextStyle(fontSize: 40),
                                 ),
                                 Text(
-                                  getString(result!),
+                                  getString(result),
                                   style: TextStyle(fontSize: 20),
                                 ),
                               ],
                             ),
-                            color: getColor(result!),
+                            color: getColor(result),
                             padding: const EdgeInsets.all(8.0),
                           ),
                           Padding(
@@ -96,8 +96,8 @@ class _MainState extends State<Main> {
                               children: <Widget>[
                                 Row(
                                   children: <Widget>[
-                                    result?.data?.current?.weather?.ic != null ? Image.network(
-                                      'https://airvisual.com/images/${result?.data?.current?.weather?.ic}.png',
+                                    result.data?.current?.weather?.ic != null ? Image.network(
+                                      'https://airvisual.com/images/${result.data?.current?.weather?.ic}.png',
                                       width: 32, // 넓이
                                       height: 32, // 높이
                                     ) : Container(),
@@ -105,15 +105,15 @@ class _MainState extends State<Main> {
                                       width: 16,
                                     ), //여백주기 16
                                     Text(
-                                      '${result?.data?.current?.weather?.tp ?? ''}°',
+                                      '${result.data?.current?.weather?.tp ?? ''}°',
                                       style: TextStyle(fontSize: 16),
                                     ),
                                   ],
                                 ),
                                 Text(
-                                    '습도 ${result?.data?.current?.weather?.hu}%'),
+                                    '습도 ${result.data?.current?.weather?.hu}%'),
                                 Text(
-                                    '풍속 ${result?.data?.current?.weather?.ws}m/s'),
+                                    '풍속 ${result.data?.current?.weather?.ws}m/s'),
                               ],
                             ),
                           )
@@ -134,11 +134,12 @@ class _MainState extends State<Main> {
                                           BorderRadius.circular(30.0)))),
                           onPressed: () {
                             setState(() {
-                              result = null;
+
                               fetchData().then((airResult) {
                                 if(airResult != null){
                                   setState(() {
                                     result = airResult;
+                                    airBloc.fetch();
                                   });
                                 }
                               });
@@ -157,7 +158,7 @@ class _MainState extends State<Main> {
             );
   }
 
-  Color getColor(Air_Result result) {
+  Color getColor(AirResult result) {
     if (result.data?.current?.pollution?.aqius != null &&
         result.data!.current!.pollution!.aqius! <= 50) {
       return Colors.greenAccent;
@@ -172,7 +173,7 @@ class _MainState extends State<Main> {
     }
   }
 
-  String getString(Air_Result result) {
+  String getString(AirResult result) {
     if (result.data?.current?.pollution?.aqius != null &&
         result.data!.current!.pollution!.aqius! <= 50) {
       return '좋음';
