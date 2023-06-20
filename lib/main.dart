@@ -33,20 +33,19 @@ class Main extends StatefulWidget {
 class _MainState extends State<Main> {
 
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: StreamBuilder<AirResult>(
-          stream: airBloc.airResult,  //에어블럭에서 데이터가져오기
-          builder: (context, snapshot) {
-            if(snapshot.hasData){
-              return buildBody(snapshot.requireData);
-            }else{
-             return CircularProgressIndicator();
+            stream: airBloc.airResult, //에어블럭에서 데이터가져오기
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return buildBody(snapshot.requireData);
+              } else {
+                return CircularProgressIndicator();
+              }
             }
-          }
         ),
       ),
     );
@@ -54,108 +53,102 @@ class _MainState extends State<Main> {
 
   Widget buildBody(AirResult result) {
     return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      '현재 위치 미세먼지',
-                      style: TextStyle(fontSize: 30),
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    Card(
-                      child: Column(
-                        children: <Widget>[
-                          Container(
-                            child: Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
-                              children: <Widget>[
-                                Text('지역:${result.data?.city}'),
-                                Text(
-                                  '${result.data?.current?.pollution?.aqius}',
-                                  style: TextStyle(fontSize: 40),
-                                ),
-                                Text(
-                                  getString(result),
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                              ],
-                            ),
-                            color: getColor(result),
-                            padding: const EdgeInsets.all(8.0),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    result.data?.current?.weather?.ic != null ? Image.network(
-                                      'https://airvisual.com/images/${result.data?.current?.weather?.ic}.png',
-                                      width: 32, // 넓이
-                                      height: 32, // 높이
-                                    ) : Container(),
-                                    SizedBox(
-                                      width: 16,
-                                    ), //여백주기 16
-                                    Text(
-                                      '${result.data?.current?.weather?.tp ?? ''}°',
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                  ],
-                                ),
-                                Text(
-                                    '습도 ${result.data?.current?.weather?.hu}%'),
-                                Text(
-                                    '풍속 ${result.data?.current?.weather?.ws}m/s'),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    ClipRRect(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 15.0, horizontal: 50.0),
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.orange),
-                              shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(30.0)))),
-                          onPressed: () {
-                            setState(() {
-
-                              fetchData().then((airResult) {
-                                if(airResult != null){
-                                  setState(() {
-                                    result = airResult;
-                                    airBloc.fetch();
-                                  });
-                                }
-                              });
-                            });
-                          },
-                          child: Icon(
-                            Icons.refresh,
-                            color: Colors.white,
-                          ),
+      padding: const EdgeInsets.all(8.0),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              '현재 위치 미세먼지',
+              style: TextStyle(fontSize: 30),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Card(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    child: Row(
+                      mainAxisAlignment:
+                      MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Text('지역:${result.data?.city}'),
+                        Text(
+                          '${result.data?.current?.pollution?.aqius}',
+                          style: TextStyle(fontSize: 40),
                         ),
-                      ),
-                    )
-                  ],
+                        Text(
+                          getString(result),
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    ),
+                    color: getColor(result),
+                    padding: const EdgeInsets.all(8.0),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment:
+                      MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            result.data?.current?.weather?.ic != null ? Image
+                                .network(
+                              'https://airvisual.com/images/${result.data
+                                  ?.current?.weather?.ic}.png',
+                              width: 32, // 넓이
+                              height: 32, // 높이
+                            ) : Container(),
+                            SizedBox(
+                              width: 16,
+                            ), //여백주기 16
+                            Text(
+                              '${result.data?.current?.weather?.tp ?? ''}°',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ],
+                        ),
+                        Text(
+                            '습도 ${result.data?.current?.weather?.hu}%'),
+                        Text(
+                            '풍속 ${result.data?.current?.weather?.ws}m/s'),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            ClipRRect(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 15.0, horizontal: 50.0),
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor:
+                      MaterialStateProperty.all(Colors.orange),
+                      shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                              borderRadius:
+                              BorderRadius.circular(30.0)))),
+                  onPressed: () {
+                    setState(() {
+                      airBloc.fetch();
+                    });
+                  },
+                  child: Icon(
+                    Icons.refresh,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            );
+            )
+          ],
+        ),
+      ),
+    );
   }
 
   Color getColor(AirResult result) {
@@ -188,5 +181,4 @@ class _MainState extends State<Main> {
     }
   }
 
-  fetchData() {}
 }
